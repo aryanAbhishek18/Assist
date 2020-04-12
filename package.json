@@ -1,0 +1,24 @@
+{
+  "name": "assist",
+  "version": "1.0.0",
+  "description": "Assist is a web application where users can manage their todo lists and keep a record of their expenses and get insights related to their expenditure analysis. Assist has been built using React and Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryanAbhishek18/Assist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aryanAbhishek18/Assist/issues"
+  },
+  "homepage": "https://github.com/aryanAbhishek18/Assist#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7"
+  }
+}
