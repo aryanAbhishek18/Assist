@@ -19,8 +19,8 @@ class App extends React.Component {
       isLoggedIn: false
     };
     this.signOutHandler = this.signOutHandler.bind(this);
-    this.signInHandler = this.signInHandler.bind(this);
-    this.signUpHandler = this.signUpHandler.bind(this);
+    this.doSignIn = this.doSignIn.bind(this);
+    this.doSignUp = this.doSignUp.bind(this);
   }
 
   signOutHandler() {
@@ -29,14 +29,14 @@ class App extends React.Component {
     });
   }
 
-  signInHandler() {
+  doSignIn() {
     console.log("Sign in");
     this.setState({
       isLoggedIn: true
     });
   }
 
-  signUpHandler() {
+  doSignUp() {
     console.log("Sign up");
     this.setState({
       isLoggedIn: true
@@ -62,10 +62,10 @@ class App extends React.Component {
         <div className="container">
           <div className="row">
             <div className="offset-md-1 col-md-4">
-              <SignInForm signInHandler={this.signInHandler}></SignInForm>
+              <SignInForm doSignIn={this.doSignIn}></SignInForm>
             </div>
             <div className="col-md-4 offset-md-1">
-              <SignUpForm signUpHandler={this.signUpHandler}></SignUpForm>
+              <SignUpForm doSignUp={this.doSignUp}></SignUpForm>
             </div>
           </div>
         </div>
