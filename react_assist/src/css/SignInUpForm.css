@@ -37,3 +37,7 @@
     display: flex;
     justify-content: center;
   }
+
+  .errorMsg {
+    color: red;
+  }

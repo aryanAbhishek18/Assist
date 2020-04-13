@@ -1,6 +1,13 @@
 import React from 'react';
 import '../css/SignInUpForm.css';
 
+let URL;
+if (process.env.NODE_ENV === 'development') {
+    URL = 'http://localhost:3000';
+} else {
+    URL = '';
+}
+
 class SignInForm extends React.Component {
 
     constructor(props) {
@@ -11,27 +18,81 @@ class SignInForm extends React.Component {
             errorMsg: ''
         };
         this.signInHandler = this.signInHandler.bind(this);
+        this.emailChangeHandler = this.emailChangeHandler.bind(this);
+        this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
     }
 
-    signInHandler() {
+    emailChangeHandler(event) {
+        this.setState({
+            email: event.target.value
+        });
+    }
+
+    passwordChangeHandler(event) {
+        this.setState({
+            password: event.target.value
+        });
+    }
+
+    async signInHandler(e) {
         //check sign in details and verify with database, then call doSignIn
-        this.props.doSignIn();
+        e.preventDefault();
+        let email = this.state.email.trim();
+        let password = this.state.password.trim();
+        if(!email) {
+            this.setState({
+                errorMsg: 'Email empty!'
+            });
+        }
+        else if(!password) {
+            this.setState({
+                errorMsg: 'Password empty!'
+            });
+        }
+        else{
+            
+            try {
+                const url = URL + '/api/signIn';
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ 
+                        email: this.state.email,
+                        password: this.state.password 
+                    }),
+                });
+                const data = await res.json();
+                if (data.status !== 200) {
+                    return alert(data.message);
+                }
+                
+                const userMongoId = data.userMongoId;
+                sessionStorage.setItem('userId', userMongoId);
+
+                this.props.doSignIn();
+
+            } catch (e) {
+                alert(e.message);
+            }
+
+        }
+        
     }
 
     render(){
         return (
             <div className="container signInUpDiv">
-                <form>
+                <form noValidate>
                     <div className="form-group">
-                        <label for="signIn-email" className="col-form-label">Email:</label>
-                        <input type="email" className="form-control" id="signIn-email"></input>
+                        <label className="col-form-label">Email:</label>
+                        <input type="email" className="form-control" onChange={this.emailChangeHandler} id="signIn-email" required="required"></input>
                     </div>
                     <div className="form-group">
-                        <label for="signIn-password" className="col-form-label">Password:</label>
-                        <input type="password" class="form-control" id="signIn-password"></input>
+                        <label className="col-form-label">Password:</label>
+                        <input type="password" className="form-control" onChange={this.passwordChangeHandler} id="signIn-password" required="required"></input>
                     </div>
-                    <p>{this.state.errorMsg}</p>
-                    <span><button type="button" className="btn btn-outline-info" onClick={this.signInHandler}>Sign In</button></span>
+                    <p className='errorMsg'>{this.state.errorMsg}</p>
+                    <span><button type="submit" className="btn btn-outline-info" onClick={this.signInHandler}>Sign In</button></span>
                 </form>
             </div>
         );

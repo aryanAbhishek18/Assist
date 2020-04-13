@@ -26,7 +26,10 @@ const userSchema = new schema({
         type: String,
         required: true
     },
-    tasks: [taskSchema]
+    tasks: {
+        type: [taskSchema],
+        default: []
+    }
 });
 
 const userModel = mongoose.model('users', userSchema);

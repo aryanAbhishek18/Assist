@@ -23,20 +23,20 @@ class App extends React.Component {
     this.doSignUp = this.doSignUp.bind(this);
   }
 
-  signOutHandler() {
+  signOutHandler(e) {
     this.setState({
       isLoggedIn: false
     });
   }
 
-  doSignIn() {
+  doSignIn(e) {
     console.log("Sign in");
     this.setState({
       isLoggedIn: true
     });
   }
 
-  doSignUp() {
+  doSignUp(e) {
     console.log("Sign up");
     this.setState({
       isLoggedIn: true

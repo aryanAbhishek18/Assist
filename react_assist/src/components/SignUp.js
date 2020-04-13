@@ -32,13 +32,13 @@ class SignUpForm extends React.Component {
                     </div>
                     <div className="form-group">
                         <label for="signUp-password" className="col-form-label">Password:</label>
-                        <input type="password" class="form-control" id="signUp-password"></input>
+                        <input type="password" className="form-control" id="signUp-password"></input>
                     </div>
                     <div className="form-group">
                         <label for="SignUp-confirm-password" className="col-form-label">Confirm Password:</label>
-                        <input type="password" class="form-control" id="SignUp-confirm-password"></input>
+                        <input type="password" className="form-control" id="SignUp-confirm-password"></input>
                     </div>
-                    <p>{this.state.errorMsg}</p>
+                    <p className='errorMsg'>{this.state.errorMsg}</p>
                     <span><button type="button" className="btn btn-outline-info" onClick={this.signUpHandler}>Sign Up</button></span>
                 </form>
             </div>
