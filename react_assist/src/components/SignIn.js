@@ -3,7 +3,7 @@ import '../css/SignInUpForm.css';
 
 let URL;
 if (process.env.NODE_ENV === 'development') {
-    URL = 'http://localhost:3000';
+    URL = 'http://localhost:5000';
 } else {
     URL = '';
 }
@@ -34,9 +34,9 @@ class SignInForm extends React.Component {
         });
     }
 
-    async signInHandler(e) {
+    async signInHandler(event) {
         //check sign in details and verify with database, then call doSignIn
-        e.preventDefault();
+        event.preventDefault();
         let email = this.state.email.trim();
         let password = this.state.password.trim();
         if(!email) {
@@ -52,7 +52,7 @@ class SignInForm extends React.Component {
         else{
             
             try {
-                const url = URL + '/api/signIn';
+                const url = URL + '/api/authenticate/signIn';
                 const res = await fetch(url, {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
