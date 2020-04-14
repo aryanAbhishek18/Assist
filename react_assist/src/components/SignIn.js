@@ -50,7 +50,9 @@ class SignInForm extends React.Component {
             });
         }
         else{
-            
+            this.setState({
+                errorMsg: ''
+            });
             try {
                 const url = URL + '/api/authenticate/signIn';
                 const res = await fetch(url, {

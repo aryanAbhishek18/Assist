@@ -4,7 +4,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 let { port } = require('./config');
 const connectDB = require('./db/mongoose_connection');
+
+//routes handler
 const authenticate = require('./routes/authenticate');
+const profile = require('./routes/profile');
 
 const app = express();
 
@@ -17,6 +20,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/api/authenticate', authenticate);
+app.use('/api/profile', profile);
+
+
 
 port = process.env.PORT || port;
 app.listen(port, ()=>{
