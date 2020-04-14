@@ -14,7 +14,6 @@ function bcryptComapre (req, res, next) {
             });
         }
         else{
-            console.log(response);
             if(response === false) {
                 return res.json({
                     status: 403,

@@ -1,13 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
-import Profile from './components/Profile';
+import Portal from './components/Portal';
 import SignUpForm from './components/SignUp';
 import SignInForm from './components/SignIn';
 
@@ -24,32 +18,26 @@ class App extends React.Component {
   }
 
   signOutHandler(e) {
+    sessionStorage.removeItem('userId');
     this.setState({
       isLoggedIn: false
     });
   }
 
   doSignIn(e) {
-    console.log("Sign in");
     this.setState({
       isLoggedIn: true
     });
   }
 
   doSignUp(e) {
-    console.log("Sign up");
     this.setState({
       isLoggedIn: true
     });
   }
 
   render() {
-    const ProfileWithSignOUT = (
-      <div className="container">
-        <button className="btn btn-warning" onClick={this.signOutHandler}>Sign Out</button>
-          <Profile />
-      </div>
-    );
+    const LoggedInContent = <Portal signOutHandler={this.signOutHandler}/>;
 
     const home = (
       <div className="container">
@@ -74,7 +62,7 @@ class App extends React.Component {
 
     return (
       <div className="container-fluid home">
-        {this.state.isLoggedIn ? ProfileWithSignOUT : home}
+        {this.state.isLoggedIn ? LoggedInContent : home}
       </div>
     );
   }

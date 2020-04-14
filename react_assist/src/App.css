@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 25vmin;
+  height: 120px;
   pointer-events: none;
 }
 
@@ -34,11 +34,6 @@
   }
 }
 
-nav{
-  background-color: #61dafb;
-  color: #282c34;
-}
-
 
 
 .home-desc {
@@ -47,4 +42,9 @@ nav{
   font-size: larger;
   margin-top: 20px;
   margin-bottom: 40px;
+}
+
+.home {
+  margin: 10px 0px;
+  padding: 10px 0px;
 }
