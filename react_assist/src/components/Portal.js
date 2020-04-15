@@ -8,6 +8,8 @@ import {
   Link
 } from 'react-router-dom';
 
+
+import Home from '../components/Home';
 import Profile from '../components/Profile';
 import TaskManager from '../components/TaskManager';
 import ExpenseManager from '../components/ExpenseManager';
@@ -85,6 +87,9 @@ class Portal extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarTogglerPortal">
                   <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item">
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li className="nav-item">
                       <Link to="/profile">Profile</Link>
                     </li>
                     <li className="nav-item">
@@ -104,13 +109,16 @@ class Portal extends React.Component {
                 renders the first one that matches the current URL. */}
             <Switch>
               <Route path="/profile">
-                <Profile />
+                <Profile name={this.state.name}/>
               </Route>
               <Route path="/task">
                 <TaskManager />
               </Route>
               <Route path="/expense">
                 <ExpenseManager />
+              </Route>
+              <Route path="/">
+                <Home name={this.state.name} />
               </Route>
             </Switch>
           </div>
