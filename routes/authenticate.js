@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const bcryptHash = require('../utils/bcyptHash');
-const bcryptCompare = require('../utils/bcyptCompare');
+const bcryptHash = require('../utils/bcryptHash');
+const bcryptCompare = require('../utils/bcryptCompare');
 const userModel = require('../models/user');
 
 const router = express.Router();

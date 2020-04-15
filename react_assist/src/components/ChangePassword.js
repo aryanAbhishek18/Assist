@@ -64,7 +64,7 @@ class ChangePassword extends React.Component {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ 
-                        newPassword: this.state.newPass,
+                        password: this.state.newPass,
                         userMongoId: sessionStorage.getItem('userId') 
                     }),
                 });
@@ -74,6 +74,10 @@ class ChangePassword extends React.Component {
                 }
                 
                 alert('Password changed successfully!!');
+                this.setState({
+                    newPass: '',
+                    confNewPass: ''
+                });
 
             } catch (e) {
                 alert(e.message);
@@ -89,11 +93,11 @@ class ChangePassword extends React.Component {
                 <form noValidate>
                     <div className="form-group">
                         <label className="col-form-label">New password:</label>
-                        <input type="password" className="form-control" onChange={this.newPasswordChangeHandler} required="required"></input>
+                        <input type="password" className="form-control" value={this.state.newPass} onChange={this.newPasswordChangeHandler} required="required"></input>
                     </div>
                     <div className="form-group">
                         <label className="col-form-label">Confirm new password:</label>
-                        <input type="password" className="form-control" onChange={this.confNewPasswordChangeHandler} required="required"></input>
+                        <input type="password" className="form-control" value={this.state.confNewPass} onChange={this.confNewPasswordChangeHandler} required="required"></input>
                     </div>
                     <p className='errorMsg'>{this.state.errorMsg}</p>
                     <span><button type="submit" className="btn btn-outline-info" onClick={this.passChangeHandler}>Submit</button></span>

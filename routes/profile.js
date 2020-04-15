@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const userModel = require('../models/user');
+const bcryptHash = require('../utils/bcryptHash');
 
 const router = express.Router();
 
@@ -37,39 +38,55 @@ router.post('/getProfile', async (req, res) => {
 });
 
 
-router.post('/changePassword', async (req, res) => {
-    const userMongoId = req.body.userMongoId;
-    const oldPass = req.body.oldPassword;
-    const newPass = req.body.newPassword;
-
-    if (!userMongoId) {
+router.post('/changePassword', async (req, res, next) => {
+    try {
+        const userMongoId = req.body.userMongoId;
+        const newPass = req.body.password;
+        if (!userMongoId) {
+            return res.json({
+                status: 401,
+                message: 'User id missing!!'
+            });
+        }
+        if (!newPass) {
+            return res.json({
+                status: 401,
+                message: 'New password missing!!'
+            });
+        }
+        next();
+    } catch (e) {
         return res.json({
-            status: 401,
-            message: 'User id missing!!'
+            status: 500,
+            message: 'Internal1 server error!!'
         });
     }
-
-    if (!oldPass) {
+}, bcryptHash, async (req, res) => {
+    try {
+        const newHashedPassword = req.hashedPassword;
+        const userMongoId = req.body.userMongoId;
+        const updatedUser = await userModel.findOneAndUpdate({
+            _id: userMongoId
+        }, {
+            password: newHashedPassword
+        });
+        if (updatedUser) {
+            return res.json({
+                status: 200,
+                message: 'Password updated successfully!!'
+            });
+        } else {
+            return res.json({
+                status: 500,
+                message: 'Internal2 server error!!'
+            });
+        }
+    } catch (e) {
         return res.json({
-            status: 401,
-            message: 'Old password missing!!'
+            status: 500,
+            message: 'Internal3 server error!!'
         });
     }
-
-    if (!newPass) {
-        return res.json({
-            status: 401,
-            message: 'New password missing!!'
-        });
-    }
-
-    if (oldPass === newPass) {
-        return res.json({
-            status: 401,
-            message: 'Old password and new one cant be same!!'
-        })
-    }
-
 });
 
 
