@@ -72,8 +72,8 @@ class AddTask extends React.Component {
                 
                 alert('Task added successfully!!');
                 this.setState({
-                    newPass: '',
-                    confNewPass: ''
+                    title: '',
+                    description: ''
                 });
 
                 this.props.addTaskHandler(title, description, timestamp);
