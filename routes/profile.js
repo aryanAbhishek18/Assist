@@ -1,6 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 const userModel = require('../models/user');
 const bcryptHash = require('../utils/bcryptHash');
 
@@ -36,6 +34,8 @@ router.post('/getProfile', async (req, res) => {
         });
     }
 });
+
+
 
 
 router.post('/changePassword', async (req, res, next) => {
@@ -88,6 +88,7 @@ router.post('/changePassword', async (req, res, next) => {
         });
     }
 });
+
 
 
 module.exports = router;

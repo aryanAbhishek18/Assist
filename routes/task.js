@@ -3,6 +3,33 @@ const userModel = require('../models/user');
 
 const router = express.Router();
 
+router.post('/getTasks', async (req, res) => {
+    try {
+        const userMongoId = req.body.userMongoId;
+        if(!userMongoId) {
+            return res.json({
+                status: 403,
+                message: 'User id missing!!'
+            });
+        }
+
+        const user = await userModel.findById(userMongoId);
+        return res.json({
+            status: 200,
+            message: 'Tasks received successfully!',
+            tasks: user.tasks
+        });
+
+    } catch (e) {
+        return res.json({
+            status: 500,
+            message: 'Internal server error!!'
+        });
+    }
+});
+
+
+
 router.post('/addTask', async (req, res) => {
     try {
         const title = req.body.title;
@@ -14,7 +41,7 @@ router.post('/addTask', async (req, res) => {
             $push: {
                 tasks: {
                     title: title,
-                    desc: description,
+                    description: description,
                     timestamp: timestamp
                 }
             }

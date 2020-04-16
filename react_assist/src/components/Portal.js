@@ -29,8 +29,7 @@ class Portal extends React.Component {
       super(props);
       this.state = {
         name: '',
-        email: '',
-        tasks: []
+        email: ''
       };
     }
 
@@ -60,8 +59,7 @@ class Portal extends React.Component {
         else {
           this.setState({
             name: data.user.name,
-            email: data.user.name,
-            tasks: data.user.tasks
+            email: data.user.name
           });
         }
 

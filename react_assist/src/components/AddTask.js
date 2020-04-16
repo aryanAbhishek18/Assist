@@ -68,15 +68,15 @@ class AddTask extends React.Component {
                 if (data.status !== 200) {
                     return alert(data.message);
                 }
-                const newTask = data.task;
+                const timestamp = data.timestamp;
                 
                 alert('Task added successfully!!');
-                // this.setState({
-                //     newPass: '',
-                //     confNewPass: ''
-                // });
+                this.setState({
+                    newPass: '',
+                    confNewPass: ''
+                });
 
-                //this.props.addTaskHandler()
+                this.props.addTaskHandler(title, description, timestamp);
 
             } catch (e) {
                 alert(e.message);
@@ -92,11 +92,11 @@ class AddTask extends React.Component {
                 <form noValidate>
                     <div className="form-group">
                         <label className="col-form-label">Title:</label>
-                        <input type="password" className="form-control" value={this.state.title} onChange={this.titleChangeHandler} required="required"></input>
+                        <input type="text" className="form-control" value={this.state.title} onChange={this.titleChangeHandler} required="required"></input>
                     </div>
                     <div className="form-group">
                         <label className="col-form-label">Description:</label>
-                        <input type="password" className="form-control" value={this.state.description} onChange={this.descriptionChangeHandler} required="required"></input>
+                        <input type="text" className="form-control" value={this.state.description} onChange={this.descriptionChangeHandler} required="required"></input>
                     </div>
                     <p className='errorMsg'>{this.state.errorMsg}</p>
                     <span><button type="submit" className="btn btn-outline-info" onClick={this.addNewTaskHandler}>Add Task</button></span>

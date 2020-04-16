@@ -6,7 +6,7 @@ const taskSchema = new schema({
         type: String,
         required: true
     },
-    desc: {
+    description: {
         type: String,
         default: 'No description!'
     },
