@@ -1,0 +1,43 @@
+.add-task-div{
+    margin: 20px;
+    margin: auto;
+    padding: 10px;
+    background-color: #fbfbfb;
+    opacity: 1;
+    border: 2px solid transparent;
+    border-radius: 5px;
+  }
+  
+  .add-task-div button {
+    color: white;
+    background-color: #61dafb;
+    border-color: #61dafb;
+  }
+  
+  .add-task-div button:hover {
+    color: #61dafb;
+    background-color: white;
+  }
+  
+  .add-task-div button {
+    margin: 0px auto;
+  }
+  
+  .add-task-div label {
+    margin: 0px;
+    padding: 0px 5px;
+  }
+  
+  .add-task-div input {
+    margin: 2px;
+    padding: 2px 5px;
+  }
+  
+  .add-task-div span {
+    display: flex;
+    justify-content: center;
+  }
+
+  .errorMsg {
+    color: red;
+  }

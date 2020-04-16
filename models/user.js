@@ -9,6 +9,11 @@ const taskSchema = new schema({
     desc: {
         type: String,
         default: 'No description!'
+    },
+    timestamp: {
+        type: String,
+        required: true,
+        unique: true
     }
 });
 

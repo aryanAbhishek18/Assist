@@ -112,7 +112,7 @@ class Portal extends React.Component {
                 <Profile name={this.state.name}/>
               </Route>
               <Route path="/task">
-                <TaskManager />
+                <TaskManager name={this.state.name} tasks={this.state.tasks}/>
               </Route>
               <Route path="/expense">
                 <ExpenseManager />
