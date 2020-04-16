@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/getTasks', async (req, res) => {
     try {
         const userMongoId = req.body.userMongoId;
-        if(!userMongoId) {
+        if (!userMongoId) {
             return res.json({
                 status: 403,
                 message: 'User id missing!!'
@@ -67,5 +67,54 @@ router.post('/addTask', async (req, res) => {
         });
     }
 });
+
+
+
+router.post('/deleteTask', async (req, res) => {
+    try {
+        const userMongoId = req.body.userMongoId;
+        const timestamp = req.body.timestamp;
+        if(!userMongoId){
+            return res.json({
+                status: 403,
+                message: 'User id missing!!'
+            });
+        }
+        if(!timestamp){
+            return res.json({
+                status: 403,
+                message: 'Timestamp missing!!'
+            });
+        }
+        
+        const updatedUser = await userModel.findByIdAndUpdate(userMongoId,{
+            $pull: {
+                tasks: {
+                    timestamp: timestamp
+                }
+            }
+        });
+        
+        if(updatedUser){
+            return res.json({
+                status: 200,
+                message: 'Task deleted successfully!!'
+            });
+        }
+        else{
+            return res.json({
+                status: 500,
+                message: 'Internal server error!!'
+            });
+        }
+    } catch (e) {
+        return res.json({
+            status: 500,
+            message: 'Internal server error!!'
+        });
+    }
+});
+
+
 
 module.exports = router;

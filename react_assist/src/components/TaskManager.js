@@ -86,7 +86,15 @@ class TaskManager extends React.Component {
     }
 
     deleteTaskHandler(timestamp) {
-
+        console.log(timestamp+'yfyfyfy');
+        const tasks = this.state.tasks;
+        const updatedTasks = tasks.filter((task) => {
+            return task.timestamp !== timestamp;
+        });
+        console.log(updatedTasks);
+        this.setState({
+            tasks: updatedTasks
+        });
     }
 
     editTaskHandler(newTitle, newDesc, timestamp) {
@@ -97,8 +105,8 @@ class TaskManager extends React.Component {
 
         let tasks = this.state.tasks.map((task, key) => {
             return (
-                <div className="col-md-4">
-                    <Task title={task.title} description={task.description} key={task.timestamp}></Task>
+                <div className="col-md-4" key={key}>
+                    <Task title={task.title} description={task.description} timestamp={task.timestamp} deleteTaskHandler={this.deleteTaskHandler}></Task>
                 </div>
             );
         });

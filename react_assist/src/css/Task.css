@@ -6,3 +6,7 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+.task-div span {
+    display: flex;
+    justify-content: center;
+}
