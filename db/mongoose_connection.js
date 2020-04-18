@@ -23,7 +23,7 @@ function connectDB() {
     
     mongoose.connection.on('disconnected', function () {
         console.log("Database disconnected");
-        mongoose.connect(config.url, { useNewUrlParser: true });
+        mongoose.connect(mongoURL, { useNewUrlParser: true });
     });
 }
 

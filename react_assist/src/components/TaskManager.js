@@ -81,12 +81,11 @@ class TaskManager extends React.Component {
             timestamp: timestamp
         };
         this.setState({
-            tasks: [newTask, ...this.state.tasks]
+            tasks: [...this.state.tasks, newTask]
         });
     }
 
     deleteTaskHandler(timestamp) {
-        console.log(timestamp+'yfyfyfy');
         const tasks = this.state.tasks;
         const updatedTasks = tasks.filter((task) => {
             return task.timestamp !== timestamp;

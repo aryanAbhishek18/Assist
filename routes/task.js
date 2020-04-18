@@ -33,7 +33,7 @@ router.post('/getTasks', async (req, res) => {
 router.post('/addTask', async (req, res) => {
     try {
         const title = req.body.title;
-        const description = req.body.title;
+        const description = req.body.description;
         const userMongoId = req.body.userMongoId;
         const timestamp = new Date().getTime().toString();
 
