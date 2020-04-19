@@ -1,6 +1,46 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
+const expenseCategorySchema = ({
+    categoryName: {
+        type: String,
+        unique: true,
+        required: true
+    }
+});
+
+const expenseSchema = ({
+    category: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        default: 'No description!'
+    },
+    created: {
+        type: Date,
+        required: true,
+        unique: true
+    },
+    day:{
+        type: Number,
+        required: true
+    },
+    month: {
+        type: Number,
+        required: true
+    },
+    year: {
+        type: Number,
+        required: true
+    }
+});
+
 const taskSchema = new schema({
     title: {
         type: String,
@@ -33,6 +73,14 @@ const userSchema = new schema({
     },
     tasks: {
         type: [taskSchema],
+        default: []
+    },
+    expenseCategories: {
+        type: [expenseCategorySchema],
+        default: []
+    },
+    expenses: {
+        type: [expenseSchema],
         default: []
     }
 });
