@@ -46,7 +46,7 @@ class ExpenseManager extends React.Component {
                 console.log(data);
                 if(data.status !== 200) {
                     alert(data.message);
-                    alert('There 1 was some error! Sign in again.');
+                    alert('There was some error! Sign in again.');
                     //do sign out
                 }
                 else{
@@ -63,7 +63,7 @@ class ExpenseManager extends React.Component {
                 }
             }
         }catch(e){
-            alert('There 2 was some error! Sign in again.');
+            alert('There was some error! Sign in again.');
             //do sign out
         }
     }
@@ -83,8 +83,7 @@ class ExpenseManager extends React.Component {
 
 
     render() {
-        console.log(this.state.categories + this.state.expenses); 
-
+        console.log(this.state.expenses);
         return (
             <div className="container expense-manager-main-div">
                 <h3 className="expense-manager-greeting-msg">

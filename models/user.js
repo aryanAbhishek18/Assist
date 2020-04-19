@@ -20,14 +20,14 @@ const expenseSchema = ({
     },
     description: {
         type: String,
-        default: 'No description!'
+        required: true
     },
     created: {
         type: Date,
         required: true,
         unique: true
     },
-    day:{
+    date:{
         type: Number,
         required: true
     },

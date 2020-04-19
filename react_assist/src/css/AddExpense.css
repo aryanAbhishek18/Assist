@@ -1,4 +1,4 @@
-.add-expense-div{
+.add-expense-div {
     margin: 20px;
     margin: auto;
     padding: 10px;
@@ -6,39 +6,35 @@
     opacity: 1;
     border: 2px solid transparent;
     border-radius: 5px;
-  }
-  
-  .add-expense-div button {
+}
+
+.add-expense-div button {
     color: white;
     background-color: #61dafb;
     border-color: #61dafb;
-  }
-  
-  .add-expense-div button:hover {
+}
+
+.add-expense-div button:hover {
     color: #61dafb;
     background-color: white;
     border-color: #61dafb;
-  }
-  
-  .add-expense-div button {
+}
+
+.add-expense-div button {
     margin: 0px auto;
-  }
-  
-  .add-expense-div label {
+}
+
+.add-expense-div label {
     margin: 0px;
     padding: 0px 5px;
-  }
-  
-  .add-expense-div input {
+}
+
+.add-expense-div input {
     margin: 2px;
     padding: 2px 5px;
-  }
-  
-  .add-expense-div span {
+}
+
+.add-expense-div span {
     display: flex;
     justify-content: center;
-  }
-
-  .errorMsg {
-    color: red;
-  }
+}

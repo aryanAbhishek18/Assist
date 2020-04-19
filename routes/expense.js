@@ -69,4 +69,42 @@ router.post('/getCategoriesAndExpenses', async (req, res) => {
 });
 
 
+
+router.post('/addExpense', async (req, res) => {
+    try {
+        const userMongoId = req.body.userMongoId;
+        if (!userMongoId) {
+            return res.json({
+                status: 403,
+                message: 'User id missing!!'
+            });
+        }
+
+        const user = await userModel.findByIdAndUpdate(userMongoId, {
+            $push: {
+                expenses: {
+                    category: req.body.category,
+                    amount: req.body.amount,
+                    description: req.body.description,
+                    created: req.body.created,
+                    date: req.body.date,
+                    month: req.body.month,
+                    year: req.body.year
+                }
+            }
+        });
+
+        return res.json({
+            status: 200,
+            message: 'Expense saved successfully!'
+        });
+    } catch (e) {
+        return res.json({
+            status: 500,
+            message: 'Internal server error!'
+        });
+    }
+});
+
+
 module.exports = router;
