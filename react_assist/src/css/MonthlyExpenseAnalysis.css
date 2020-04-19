@@ -1,0 +1,12 @@
+.monthly-expense-analysis-div{
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+.monthly-expense-analysis-description{
+    text-align: center;
+    color: white;
+}
+.monthly-expense-analysis-div .row{
+    justify-content: center;
+}

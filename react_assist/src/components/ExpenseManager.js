@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/ExpenseManager.css';
 import AddExpenseCategory from './AddExpenseCategory';
 import AddExpense from './AddExpense';
+import MonthlyExpenseAnalyser from './MonthlyExpenseAnalyser';
 
 let URL;
 if (process.env.NODE_ENV === 'development') {
@@ -83,7 +84,6 @@ class ExpenseManager extends React.Component {
 
 
     render() {
-        console.log(this.state.expenses);
         return (
             <div className="container expense-manager-main-div">
                 <h3 className="expense-manager-greeting-msg">
@@ -100,9 +100,7 @@ class ExpenseManager extends React.Component {
                     </div>
                 </div>
                 <hr></hr>
-                <div className="container">
-                    
-                </div>
+                <MonthlyExpenseAnalyser categories={this.state.categories} expenses={this.state.expenses} />
             </div>
         );
     }
