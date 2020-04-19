@@ -9,7 +9,7 @@ const connectDB = require('./db/mongoose_connection');
 const authenticate = require('./routes/authenticate');
 const profile = require('./routes/profile');
 const task = require('./routes/task');
-
+const expense = require('./routes/expense');
 
 const app = express();
 
@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use('/api/authenticate', authenticate);
 app.use('/api/profile', profile);
 app.use('/api/task', task);
+app.use('/api/expense', expense);
 
 
 
