@@ -11,3 +11,6 @@
 .task-list {
     margin-top: 20px;
 }
+.task-list .row {
+    justify-content: center;
+}

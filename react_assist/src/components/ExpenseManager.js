@@ -44,7 +44,6 @@ class ExpenseManager extends React.Component {
                 });
 
                 const data = await res.json();
-                console.log(data);
                 if(data.status !== 200) {
                     alert(data.message);
                     alert('There was some error! Sign in again.');
@@ -70,7 +69,6 @@ class ExpenseManager extends React.Component {
     }
 
     addCategoryHandler(newCategory){
-        console.log(newCategory);
         this.setState({
             categories: [...this.state.categories, newCategory.toUpperCase()]
         });

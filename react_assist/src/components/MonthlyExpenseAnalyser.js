@@ -49,7 +49,6 @@ class MonthlyExpenseAnalyser extends React.Component {
         for(const expense of expenses){
             overAllExpense += Number(expense.amount)
         }
-        console.log(overAllExpense);
         const categories = this.props.categories;
         const categoryWiseExpenses = categories.map((category, key) => {
             return (

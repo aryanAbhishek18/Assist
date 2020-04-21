@@ -16,7 +16,6 @@ class AddExpense extends React.Component {
     constructor(props) {
         super(props);
         const categories = props.categories;
-        console.log(categories);
         this.state = {
             category: 'Select an option from dropdown',
             amount: 0,
@@ -29,21 +28,18 @@ class AddExpense extends React.Component {
     }
 
     categoryChangeHandler(event) {
-        console.log('category=> ' + event.target.value);
         this.setState({
             category: event.target.value
         });
     }
 
     amountChangeHandler(event) {
-        console.log('amount=> ' + event.target.value);
         this.setState({
             amount: event.target.value
         });
     }
 
     descriptionChangeHandler(event) {
-        console.log('description=> ' + event.target.value);
         this.setState({
             description: event.target.value
         });

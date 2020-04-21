@@ -90,7 +90,6 @@ class TaskManager extends React.Component {
         const updatedTasks = tasks.filter((task) => {
             return task.timestamp !== timestamp;
         });
-        console.log(updatedTasks);
         this.setState({
             tasks: updatedTasks
         });
