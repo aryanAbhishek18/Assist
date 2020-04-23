@@ -5,7 +5,7 @@ let URL;
 if (process.env.NODE_ENV === 'development') {
     URL = 'http://localhost:5000';
 } else {
-    URL = 'http://aryanabhi.in:5000';
+    URL = 'https://aryanabhi.in:5000';
 }
 
 class AddExpense extends React.Component {
