@@ -48,3 +48,10 @@
   margin: 10px 0px;
   padding: 10px 0px;
 }
+
+.signInUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}

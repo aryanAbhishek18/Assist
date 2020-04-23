@@ -49,12 +49,17 @@ class App extends React.Component {
         </div>
         <div className="container">
           <div className="row">
-            <div className="offset-md-1 col-md-4">
+            <div className="col-md-1"></div>
+            <div className="col-md-4 signInUpContainer">
               <SignInForm doSignIn={this.doSignIn}></SignInForm>
             </div>
-            <div className="col-md-4 offset-md-1">
+            <div className="col-md-2">
+
+            </div>
+            <div className="col-md-4 signInUpContainer">
               <SignUpForm doSignUp={this.doSignUp}></SignUpForm>
             </div>
+            <div className="col-md-1"></div>
           </div>
         </div>
       </div>

@@ -1,8 +1,6 @@
 .signInUpDiv{
-    margin: 20px;
-    margin: auto;
     padding: 10px;
-    background-color: #fbfbfb;
+    background-color: white;
     opacity: 1;
     border: 2px solid transparent;
     border-radius: 5px;
@@ -17,6 +15,7 @@
   .signInUpDiv button:hover {
     color: #61dafb;
     background-color: white;
+    border-color: #61dafb;
   }
   
   .signInUpDiv button {

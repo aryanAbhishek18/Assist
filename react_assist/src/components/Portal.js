@@ -97,9 +97,9 @@ class Portal extends React.Component {
                       <Link to="/expense">Expense Manager</Link>
                     </li>
                   </ul>
-                  <form className="form-inline my-2 my-lg-0">
+                  <span className="form-inline my-2 my-lg-0">
                     <button className="btn btn-warning" onClick={this.props.signOutHandler}>Sign Out</button>
-                  </form>
+                  </span>
                 </div>
               </nav>
         
