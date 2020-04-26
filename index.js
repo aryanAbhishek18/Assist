@@ -6,7 +6,7 @@ let { port } = require('./config');
 const connectDB = require('./db/mongoose_connection');
 
 //routes handler
-const controller = require('./routes/controller');
+const api = require('./routes/api');
 
 const app = express();
 
@@ -18,7 +18,7 @@ connectDB();
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use('/projects/assist', controller);
+app.use('/api', api);
 
 
 
