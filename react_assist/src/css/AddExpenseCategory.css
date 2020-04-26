@@ -6,6 +6,7 @@
     opacity: 1;
     border: 2px solid transparent;
     border-radius: 5px;
+    margin-bottom: 30px;;
   }
   
   .add-expense-category-div button {

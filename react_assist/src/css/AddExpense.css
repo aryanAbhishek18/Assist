@@ -6,6 +6,7 @@
     opacity: 1;
     border: 2px solid transparent;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .add-expense-div button {
