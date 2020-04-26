@@ -11,4 +11,4 @@ router.use('/profile', profile);
 router.use('/task', task);
 router.use('/expense', expense);
 
-module.exports(router);
+module.exports = router;
