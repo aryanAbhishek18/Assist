@@ -6,10 +6,7 @@ let { port } = require('./config');
 const connectDB = require('./db/mongoose_connection');
 
 //routes handler
-const authenticate = require('./routes/authenticate');
-const profile = require('./routes/profile');
-const task = require('./routes/task');
-const expense = require('./routes/expense');
+const controller = require('./routes/controller');
 
 const app = express();
 
@@ -21,10 +18,7 @@ connectDB();
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use('/api/authenticate', authenticate);
-app.use('/api/profile', profile);
-app.use('/api/task', task);
-app.use('/api/expense', expense);
+app.use('/projects/assist', controller);
 
 
 
