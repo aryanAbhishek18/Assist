@@ -10,3 +10,11 @@
 .monthly-expense-analysis-div .row{
     justify-content: center;
 }
+.monthly-expense-analysis-div p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.monthly-expense-analysis-div h3 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}

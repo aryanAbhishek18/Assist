@@ -1,0 +1,16 @@
+.month-year-selector-div {
+    margin-top: 40px;
+}
+
+.month-year-selector-div row {
+    justify-content: center;
+}
+
+.month-year-selector-div .col-md-2 {
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.select-div {
+    margin-bottom: 30px;
+}

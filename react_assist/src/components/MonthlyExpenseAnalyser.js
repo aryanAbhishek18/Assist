@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/MonthlyExpenseAnalysis.css';
 import CategoryExpenseCalculator from './CategoryExpenseCalculator';
+import MonthYearSelector from './MonthYearSelector';
 
 let URL;
 if (process.env.NODE_ENV === 'development') {
@@ -40,6 +41,14 @@ class MonthlyExpenseAnalyser extends React.Component {
             currentMonth: new Date().getMonth(),
             currentYear: new Date().getFullYear()
         };
+        this.handleFrameChange = this.handleFrameChange.bind(this);
+    }
+
+    handleFrameChange(month, year) {
+        this.setState({
+            currentMonth: month,
+            currentYear: year
+        });
     }
 
     render() {
@@ -47,7 +56,9 @@ class MonthlyExpenseAnalyser extends React.Component {
         let overAllExpense = 0;
         const expenses = this.props.expenses;
         for(const expense of expenses){
-            overAllExpense += Number(expense.amount)
+            if(expense.month === this.state.currentMonth && expense.year === this.state.currentYear) {
+                overAllExpense += Number(expense.amount)
+            } 
         }
         const categories = this.props.categories;
         const categoryWiseExpenses = categories.map((category, key) => {
@@ -67,7 +78,9 @@ class MonthlyExpenseAnalyser extends React.Component {
         return (
             <div className="container monthly-expense-analysis-div">
                 <div className="container monthly-expense-analysis-description">
-                    <h4>Following is the monthly analysis report for {getMonth(this.state.currentMonth)}, {this.state.currentYear}:</h4>
+                    <h3>Monthly expenditure analysis for {getMonth(this.state.currentMonth)}, {this.state.currentYear} : </h3>
+                    <MonthYearSelector handleFrameChange={this.handleFrameChange}></MonthYearSelector>
+                    <p>Total amount spent -> {overAllExpense} bucks</p>
                     <div className="row">
                         {categoryWiseExpenses}
                     </div>
