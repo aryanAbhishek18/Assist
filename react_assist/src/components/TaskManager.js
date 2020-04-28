@@ -29,10 +29,9 @@ class TaskManager extends React.Component {
 
     async componentDidMount() {
         try{
-          const userId = sessionStorage.getItem('userId');
-          if(!userId) {
-            return alert('Kindly sign in again!');
-            //do sign out
+          const token = sessionStorage.getItem('assistToken');
+          if(!token) {
+            return alert('Token Missing! Kindly sign out and sign in again!');
           }
   
           const url = URL + '/api/task/getTasks';
@@ -40,14 +39,13 @@ class TaskManager extends React.Component {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              userMongoId: sessionStorage.getItem('userId')
+              token: sessionStorage.getItem('assistToken')
             })
           });
   
           const data = await res.json();
           if(data.status !== 200) {
             return alert(data.message);
-            //do sign out
           }
   
           else {
@@ -68,8 +66,7 @@ class TaskManager extends React.Component {
           }
   
         }catch(e){
-          return alert('There was some error!!');
-          //do sign out
+          return alert('There was some error!! Please sign out and sign in again');
         }
       }
 

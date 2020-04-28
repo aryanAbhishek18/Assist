@@ -61,7 +61,7 @@ class AddTask extends React.Component {
                     body: JSON.stringify({ 
                         title: title,
                         description: description,
-                        userMongoId: sessionStorage.getItem('userId') 
+                        token: sessionStorage.getItem('assistToken') 
                     }),
                 });
                 const data = await res.json();

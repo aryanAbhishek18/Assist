@@ -18,9 +18,9 @@ class Task extends React.Component {
     async deleteTask() {
         try{
             const timestamp = this.props.timestamp;
-            const userId = sessionStorage.getItem('userId');
-            if(!userId) {
-            return alert('There was some error in sign in!!');
+            const token = sessionStorage.getItem('assistToken');
+            if(!token) {
+            return alert('Token missing!!');
             //do sign out
             }
 
@@ -29,15 +29,14 @@ class Task extends React.Component {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                    userMongoId: sessionStorage.getItem('userId'),
+                    token: sessionStorage.getItem('assistToken'),
                     timestamp: timestamp
                 })
             });
 
             const data = await res.json();
             if(data.status !== 200) {
-                alert(data.message);
-                //do sign out
+                alert(data.message + '/nPlease sign out and sign in again!!');
             }
             else{
                 alert('Task deleted successfully!!');

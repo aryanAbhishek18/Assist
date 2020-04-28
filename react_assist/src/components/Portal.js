@@ -35,9 +35,9 @@ class Portal extends React.Component {
 
     async componentDidMount() {
       try{
-        const userId = sessionStorage.getItem('userId');
-        if(!userId) {
-          return alert('There was some error in sign in!!');
+        const token = sessionStorage.getItem('assistToken');
+        if(!token) {
+          return alert('Token missing! Please sign out and sign in again!!');
           //do sign out
         }
 
@@ -46,7 +46,7 @@ class Portal extends React.Component {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            userMongoId: sessionStorage.getItem('userId')
+            token: sessionStorage.getItem('assistToken')
           })
         });
 
@@ -64,8 +64,7 @@ class Portal extends React.Component {
         }
 
       }catch(e){
-        return alert('There was some error!!');
-        //do sign out
+        return alert('There was some error! Please sign out and sign in again!!');
       }
     }
 

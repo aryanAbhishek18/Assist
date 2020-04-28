@@ -28,10 +28,9 @@ class ExpenseManager extends React.Component {
 
     async componentDidMount() {
         try{
-            const userMongoId = sessionStorage.getItem('userId');
-            if(!userMongoId){
-                alert('User id missing! Please sign in again.');
-                //do sign out
+            const token = sessionStorage.getItem('assistToken');
+            if(!token){
+                return alert('Token missing! Please sign out and sign in again!');
             }
             else{
                 const url = URL + '/api/expense/getCategoriesAndExpenses'
@@ -39,15 +38,14 @@ class ExpenseManager extends React.Component {
                     method: 'POST',
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({
-                        userMongoId: userMongoId
+                        token: sessionStorage.getItem('assistToken')
                     }),
                 });
 
                 const data = await res.json();
                 if(data.status !== 200) {
                     alert(data.message);
-                    alert('There was some error! Sign in again.');
-                    //do sign out
+                    alert('There was some error! Please sign out and sign in again.');
                 }
                 else{
                     const categories = data.categories;
@@ -63,8 +61,7 @@ class ExpenseManager extends React.Component {
                 }
             }
         }catch(e){
-            alert('There was some error! Sign in again.');
-            //do sign out
+            alert('There was some error! Please sign out and sign in again.');
         }
     }
 

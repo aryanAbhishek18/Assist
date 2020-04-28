@@ -103,8 +103,8 @@ class SignUpForm extends React.Component {
                     return alert(data.message);
                 }
                 
-                const userMongoId = data.userMongoId;
-                sessionStorage.setItem('userId', userMongoId);
+                const token = data.token;
+                sessionStorage.setItem('assistToken', token);
 
                 this.props.doSignUp();
 

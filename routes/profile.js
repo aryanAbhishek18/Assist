@@ -74,7 +74,7 @@ router.post('/changePassword', async (req, res, next) => {
 }, bcryptHash, async (req, res) => {
     try {
         const newHashedPassword = req.hashedPassword;
-        const userMongoId = await jwtVerify(token);
+        const userMongoId = await jwtVerify(req.body.token);
         if(!userMongoId) {
             return res.json({
                 status: 500,

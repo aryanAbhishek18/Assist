@@ -58,9 +58,9 @@ class AddExpense extends React.Component {
         }
         else{
             try{
-                const userMongoId = sessionStorage.getItem('userId');
-                if(!userMongoId) {
-                    return alert('User id missing!');
+                const token = sessionStorage.getItem('assistToken');
+                if(!token) {
+                    return alert('Token missing! Please sign out and sign in again!');
                 }
                 else{
                     const url = URL + '/api/expense/addExpense';
@@ -72,7 +72,7 @@ class AddExpense extends React.Component {
                         method: 'POST',
                         headers: {"Content-Type": "application/json"},
                         body: JSON.stringify({
-                            userMongoId: userMongoId,
+                            token: sessionStorage.getItem('assistToken'),
                             category: this.state.category,
                             amount: this.state.amount,
                             description: this.state.description.trim(),
@@ -86,7 +86,6 @@ class AddExpense extends React.Component {
                     const data = await res.json();
                     if(data.status !== 200){
                         return alert('Internal server error!');
-                        //
                     }
                     alert(data.message);
                     const newExpense = {
@@ -106,7 +105,7 @@ class AddExpense extends React.Component {
                     });
                 }
             } catch(e){
-                return alert('There was some error!');
+                return alert('There was some error! Please sign out and sign in again!');
             }
         }
     }

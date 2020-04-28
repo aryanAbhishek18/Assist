@@ -65,7 +65,7 @@ class ChangePassword extends React.Component {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ 
                         password: this.state.newPass,
-                        userMongoId: sessionStorage.getItem('userId') 
+                        token: sessionStorage.getItem('assistToken') 
                     }),
                 });
                 const data = await res.json();

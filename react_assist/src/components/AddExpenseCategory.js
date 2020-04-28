@@ -38,10 +38,9 @@ class AddExpenseCategory extends React.Component {
             });
         }
         else{
-            const userMongoId = sessionStorage.getItem('userId');
-            if(!userMongoId) {
-                return alert('User Id missing!!');
-                //do sign out
+            const token = sessionStorage.getItem('assistToken');
+            if(!token) {
+                return alert('Token missing! Please sign out and sign in again!');
             }
             else{
                 const categoryName = this.state.newCategory.trim().toUpperCase();
@@ -57,7 +56,7 @@ class AddExpenseCategory extends React.Component {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ 
                             categoryName: categoryName,
-                            userMongoId: sessionStorage.getItem('userId') 
+                            token: sessionStorage.getItem('assistToken') 
                         }),
                     });
                     const data = await res.json();
@@ -71,7 +70,7 @@ class AddExpenseCategory extends React.Component {
                     this.props.addCategory(categoryName);
 
                 } catch(e) {
-                    return alert('There was some error!!');
+                    return alert('There was some error! Please sign out and sign in again!');
                 }
             }
         }
