@@ -3,9 +3,7 @@ const schema = mongoose.Schema;
 
 const expenseCategorySchema = ({
     categoryName: {
-        type: String,
-        unique: true,
-        required: true
+        type: String
     }
 });
 
