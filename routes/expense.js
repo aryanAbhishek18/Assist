@@ -1,17 +1,27 @@
 const express = require('express');
+const jwtVerify = require('../utils/jwtVerify');
 const userModel = require('../models/user');
 
 const router = express.Router();
 
 router.post('/addCategory', async (req, res) => {
     try {
-        const userMongoId = req.body.userMongoId;
-        if (!userMongoId) {
+        const token = req.body.token;
+        if (!token) {
             return res.json({
                 status: 403,
-                message: 'User id missing!!'
+                message: 'Token missing!!'
             });
         }
+
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
+            });
+        }
+
         const categoryName = req.body.categoryName;
         const updatedUser = await userModel.findByIdAndUpdate(userMongoId, {
             $push: {
@@ -37,11 +47,19 @@ router.post('/addCategory', async (req, res) => {
 
 router.post('/getCategoriesAndExpenses', async (req, res) => {
     try {
-        const userMongoId = req.body.userMongoId;
-        if (!userMongoId) {
+        const token = req.body.token;
+        if (!token) {
             return res.json({
                 status: 403,
-                message: 'User id missing!!'
+                message: 'Token missing!!'
+            });
+        }
+
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
             });
         }
 
@@ -72,13 +90,22 @@ router.post('/getCategoriesAndExpenses', async (req, res) => {
 
 router.post('/addExpense', async (req, res) => {
     try {
-        const userMongoId = req.body.userMongoId;
-        if (!userMongoId) {
+        const token = req.body.token;
+        if (!token) {
             return res.json({
                 status: 403,
-                message: 'User id missing!!'
+                message: 'Token missing!!'
             });
         }
+
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
+            });
+        }
+
 
         const user = await userModel.findByIdAndUpdate(userMongoId, {
             $push: {

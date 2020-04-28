@@ -1,6 +1,7 @@
 const express = require('express');
 const bcryptHash = require('../utils/bcryptHash');
 const bcryptCompare = require('../utils/bcryptCompare');
+const jwtSign = require('../utils/jwtSign');
 const userModel = require('../models/user');
 
 const router = express.Router();
@@ -42,10 +43,18 @@ router.post('/signUp', async (req, res, next) => {
             password: hashedPass
         });
 
+        const token =  await jwtSign(newUser._id);
+        if(!token) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error in generating the token!'
+            });
+        }
+
         return res.json({
             status: 200,
             message: 'Sign Up successful!',
-            userMongoId: newUser._id
+            token: token
         });
 
     } catch (e) {
@@ -86,12 +95,22 @@ router.post('/signIn', async (req, res, next) => {
 }, bcryptCompare, async (req, res) => {
     try {
         const user = req.expectedUser;
+
+        const token =  await jwtSign(user._id);
+        if(!token) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error in generating the token!'
+            });
+        }
+
         return res.json({
             status: 200,
             message: 'Sign In successful!',
-            userMongoId: user._id
+            token: token
         });
     } catch (e) {
+        console.log(e);
         return res.json({
             status: 500,
             message: 'Internal server error!'

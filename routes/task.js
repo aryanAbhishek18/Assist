@@ -1,15 +1,24 @@
 const express = require('express');
 const userModel = require('../models/user');
+const jwtVerify = require('../utils/jwtVerify');
 
 const router = express.Router();
 
 router.post('/getTasks', async (req, res) => {
     try {
-        const userMongoId = req.body.userMongoId;
-        if (!userMongoId) {
+        const token = req.body.token;
+        if (!token) {
             return res.json({
                 status: 403,
-                message: 'User id missing!!'
+                message: 'Token missing!!'
+            });
+        }
+
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
             });
         }
 
@@ -34,7 +43,21 @@ router.post('/addTask', async (req, res) => {
     try {
         const title = req.body.title;
         const description = req.body.description;
-        const userMongoId = req.body.userMongoId;
+        const token = req.body.token;
+        if (!token) {
+            return res.json({
+                status: 403,
+                message: 'Token missing!!'
+            });
+        }
+
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
+            });
+        }
         const timestamp = new Date().getTime().toString();
 
         const updatedUser = await userModel.findByIdAndUpdate(userMongoId, {
@@ -72,7 +95,21 @@ router.post('/addTask', async (req, res) => {
 
 router.post('/deleteTask', async (req, res) => {
     try {
-        const userMongoId = req.body.userMongoId;
+        const token = req.body.token;
+        if (!token) {
+            return res.json({
+                status: 403,
+                message: 'Token missing!!'
+            });
+        }
+
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
+            });
+        }
         const timestamp = req.body.timestamp;
         if(!userMongoId){
             return res.json({

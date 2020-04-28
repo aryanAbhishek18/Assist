@@ -1,16 +1,25 @@
 const express = require('express');
 const userModel = require('../models/user');
+const jwtVerify = require('../utils/jwtVerify');
 const bcryptHash = require('../utils/bcryptHash');
 
 const router = express.Router();
 
 router.post('/getProfile', async (req, res) => {
     try {
-        const userMongoId = req.body.userMongoId;
-        if (!userMongoId) {
+        const token = req.body.token;
+        if (!token) {
             return res.json({
-                status: 401,
-                message: 'User Id missing!!'
+                status: 403,
+                message: 'Token missing!!'
+            });
+        }
+
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
             });
         }
 
@@ -40,14 +49,15 @@ router.post('/getProfile', async (req, res) => {
 
 router.post('/changePassword', async (req, res, next) => {
     try {
-        const userMongoId = req.body.userMongoId;
-        const newPass = req.body.password;
-        if (!userMongoId) {
+        const token = req.body.token;
+        if (!token) {
             return res.json({
-                status: 401,
-                message: 'User id missing!!'
+                status: 403,
+                message: 'Token missing!!'
             });
         }
+
+        const newPass = req.body.password;
         if (!newPass) {
             return res.json({
                 status: 401,
@@ -64,7 +74,14 @@ router.post('/changePassword', async (req, res, next) => {
 }, bcryptHash, async (req, res) => {
     try {
         const newHashedPassword = req.hashedPassword;
-        const userMongoId = req.body.userMongoId;
+        const userMongoId = await jwtVerify(token);
+        if(!userMongoId) {
+            return res.json({
+                status: 500,
+                message: 'Internal server error while verifying the token!!'
+            });
+        }
+
         const updatedUser = await userModel.findOneAndUpdate({
             _id: userMongoId
         }, {
