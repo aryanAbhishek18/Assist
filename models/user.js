@@ -3,7 +3,8 @@ const schema = mongoose.Schema;
 
 const expenseCategorySchema = ({
     categoryName: {
-        type: String
+        type: String,
+        required: true
     }
 });
 
@@ -22,8 +23,7 @@ const expenseSchema = ({
     },
     created: {
         type: Date,
-        required: true,
-        unique: true
+        required: true
     },
     date:{
         type: Number,
@@ -50,8 +50,7 @@ const taskSchema = new schema({
     },
     timestamp: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     }
 });
 
