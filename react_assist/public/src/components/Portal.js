@@ -19,7 +19,7 @@ let URL;
 if (process.env.NODE_ENV === 'development') {
     URL = 'http://localhost:5000';
 } else {
-    URL = 'https://connect.aryanabhi.in';
+    URL = 'https://assist.aryanabhi.in';
 }
 
 class Portal extends React.Component {

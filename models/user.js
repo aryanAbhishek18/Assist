@@ -1,56 +1,26 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-const expenseCategorySchema = ({
-    categoryName: {
-        type: String,
-        required: true
+const friendSchema = new schema({
+    name: {
+        type: String
+    },
+    email: {
+        type: String
     }
 });
-
-const expenseSchema = ({
-    category: {
-        type: String,
-        required: true
+const messageSchema = new schema({
+    name: {
+        type: String
     },
-    amount: {
-        type: String,
-        required: true
+    email: {
+        type: String
     },
-    description: {
-        type: String,
-        required: true
+    message: {
+        type: String
     },
-    created: {
-        type: Date,
-        required: true
-    },
-    date:{
-        type: Number,
-        required: true
-    },
-    month: {
-        type: Number,
-        required: true
-    },
-    year: {
-        type: Number,
-        required: true
-    }
-});
-
-const taskSchema = new schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        default: 'No description!'
-    },
-    timestamp: {
-        type: String,
-        required: true
+    date: {
+        type: String
     }
 });
 
@@ -68,16 +38,28 @@ const userSchema = new schema({
         type: String,
         required: true
     },
-    tasks: {
-        type: [taskSchema],
+    dob: {
+        type: String,
+        default: ''
+    },
+    address: {
+        type: String,
+        default: ''
+    },
+    phone: {
+        type: String,
+        default: ''
+    },
+    hobby: {
+        type:String,
+        default: ''
+    },
+    friends: {
+        type: [friendSchema],
         default: []
     },
-    expenseCategories: {
-        type: [expenseCategorySchema],
-        default: []
-    },
-    expenses: {
-        type: [expenseSchema],
+    messages: {
+        type: [messageSchema],
         default: []
     }
 });
